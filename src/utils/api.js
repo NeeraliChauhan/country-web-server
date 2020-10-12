@@ -4,7 +4,7 @@ const FIXER_API_KEY = process.env.FIXER_API_KEY;
 const getCountry = (address) => {
   const url = "https://restcountries.eu/rest/v2/name/" + encodeURIComponent(address)
   return new Promise((resolve, reject) => {
-    request({ url, json: true }, (error, {body}) => {D
+    request({ url, json: true }, (error, {body}) => {
       if (error) {
         reject(error)
       } else {
