@@ -38,7 +38,7 @@ app.get("/country/currencies", (req, res) => {
         result: response
       });
     } else {
-      res.status(500).send({
+      res.status(200).send({
         result: null
       });
     }
