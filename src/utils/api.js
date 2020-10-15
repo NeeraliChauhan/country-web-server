@@ -2,7 +2,8 @@ const request = require('request');
 const FIXER_API_KEY = process.env.FIXER_API_KEY;
 
 const getCountry = (address) => {
-  const url = "https://restcountries.eu/rest/v2/name/" + encodeURIComponent(address)
+  const url = "https://restcountries.eu/rest/v2/name/" + encodeURIComponent(address) + "?fields=name;population;currencies"
+
   return new Promise((resolve, reject) => {
     request({ url, json: true }, (error, {body}) => {
       if (error) {

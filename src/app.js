@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const getCountries = require('./utils/getCountries')
+const { getCurrency, getCountries } = require("./utils/getCountries");
 
 const app = express();
 const port = process.env.PORT
@@ -25,6 +25,25 @@ app.get("/countries", (req, res) => {
     }
   });
 })
+
+app.get("/country/currencies", (req, res) => {
+  if (!req.query.code) {
+    return res.send({
+      error: "Please provide a keyword!",
+    });
+  }
+  getCurrency(req.query.code).then((response) => {
+    if (response) {
+      res.status(200).send({
+        result: response
+      });
+    } else {
+      res.status(500).send({
+        result: null
+      });
+    }
+  });
+});
 
 app.listen(port, ()=> {
   console.log(`Server is up on ${port}`)
